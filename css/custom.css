@@ -1,0 +1,52 @@
+/* ACCUEIL */
+.preloader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cecece;
+    z-index: 9998;
+    height: 100%;
+    width: 100%;
+}
+.img-preloader{
+    max-width: 40%;
+}
+.bar-preloader{
+    max-width: 40%;
+}
+.polystage{
+    border-bottom: 1px solid rgba(153,153,153,.3);
+}
+.fixed-sn main {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+}
+
+/* LOGIN */
+.home-fullpage{
+    min-height: calc(100vh - 48px);
+}
+
+/* HOME */
+.cursor-pointer{
+    cursor: pointer;
+}
+
+/* FORM */
+.md-form>input[type=date]+label.label-custom{
+    transform: translateY(-14px) scale(.8);
+    transform-origin: 0 100%;
+}
+.picker__nav--next{
+    display: none;
+}
+.picker__nav--prev{
+    display: none;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+    
+}

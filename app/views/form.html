@@ -1,0 +1,95 @@
+<div ng-if="$root.role == 'tuteur'">
+    <h1 class="mt-2">Evaluation du stage de e année</h1>
+    <p>Ce questionnaire permet d'évaluer la posture du stagiaire de Polytech Marseille dans l'entreprise et les
+        compétences
+        apportées par la formation. <strong>Il doit être complété et retourné au plus tard le 1er septembre</strong>.
+    </p>
+    <form name="formtuteur" novalidate>
+        <h4>{{ categorie1.title }}</h4>
+        <div class="md-form" ng-repeat="question in categorie1.questions" ng-if="question.question">
+            <input type="text" id="{{question}}" class="form-control">
+            <label for="{{question}}">{{ question.question }}</label>
+        </div>
+    </form>
+</div>
+
+<div ng-if="$root.role == 'eleve'">
+    <h1 class="mt-2">Fiche d'informations du stage de e année</h1>
+    <form ng-submit="createStage($root.nom, $root.prenom, idenseignant, nomtuteur, prenomtuteur, emailtuteur, nomentreprise, 
+    adresseentreprise, titrestage, descriptionstage, emailstage, debutstage, finstage)" name="formeleve" novalidate>
+        <h4 class="font-weight-bold">Stagiaire</h4>
+        <div class="md-form my-3">
+            <input type="text" id="nomstagiaire" class="form-control" ng-model="$root.nom" disabled>
+            <label for="nomstagiaire" class="active">Nom</label>
+        </div>
+        <div class="md-form my-3">
+            <input type="text" id="prenomstagiaire" class="form-control" ng-model="$root.prenom" disabled>
+            <label for="prenomstagiaire" class="active">Prénom</label>
+        </div>
+
+        <h4 class="mt-4 font-weight-bold">Tuteur enseignant</h4>
+        <div class="md-form my-3">
+            <label class="mdb-main-label" ng-class="{'active': idenseignant}">Nom</label>
+            <select class="mdb-select md-form colorful-select dropdown-primary m-0" ng-model="idenseignant">
+                <option ng-repeat="ens in enseignants" value="{{ ens.idens }}">{{ ens.prenom + ' ' + ens.nom }}</option>
+            </select>
+        </div>
+
+        <h4 class="mt-4 font-weight-bold">Tuteur entreprise</h4>
+        <div class="md-form my-3">
+            <input type="text" id="nomtuteur" class="form-control" ng-model="nomtuteur">
+            <label for="nomtuteur">Nom</label>
+        </div>
+        <div class="md-form my-3">
+            <input type="text" id="prenomtuteur" class="form-control" ng-model="prenomtuteur">
+            <label for="prenomtuteur">Prénom</label>
+        </div>
+        <div class="md-form my-3">
+            <input type="text" id="emailtuteur" class="form-control" ng-model="emailtuteur">
+            <label for="emailtuteur">Email</label>
+        </div>
+
+        <h4 class="mt-4 font-weight-bold">Entreprise</h4>
+        <div class="md-form my-3">
+            <input type="text" id="nomentreprise" class="form-control mdb-autocomplete text-uppercase"
+                ng-model="nomentreprise" ng-blur="update()">
+            <button class="mdb-autocomplete-clear">
+                <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="https://www.w3.org/2000/svg">
+                    <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    <path d="M0 0h24v24H0z" fill="none" />
+                </svg>
+            </button>
+            <label for="nomentreprise">Nom</label>
+        </div>
+        <div class="md-form my-3">
+            <input type="text" id="adresseentreprise" class="form-control" ng-model="adresseentreprise">
+            <label for="adresseentreprise">Adresse</label>
+        </div>
+
+        <h4 class="mt-4 font-weight-bold">Stage</h4>
+        <div class="md-form my-3">
+            <input type="text" id="titrestage" class="form-control" ng-model="titrestage">
+            <label for="titrestage">Titre du stage</label>
+        </div>
+        <div class="md-form my-3">
+            <input type="text" id="descriptionstage" class="form-control" ng-model="descriptionstage">
+            <label for="descriptionstage">Description du stage</label>
+        </div>
+        <div class="md-form my-3">
+            <input type="text" id="emailstage" class="form-control" ng-model="emailstage">
+            <label for="emailstage">Email du stage</label>
+        </div>
+        <div class="md-form my-3">
+            <input placeholder="Selectionner la date" type="text" id="debutstage" class="form-control datepicker"
+                ng-model="debutstage">
+            <label for="debutstage" class="active">Début du stage</label>
+        </div>
+        <div class="md-form my-3">
+            <input placeholder="Selectionner la date" type="text" id="finstage" class="form-control datepicker"
+                ng-model="finstage">
+            <label for="finstage" class="active">Fin du stage</label>
+        </div>
+        <button type="submit" class="btn btn-primary float-right mx-0">Enregistrer</button>
+    </form>
+</div>
