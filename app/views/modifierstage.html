@@ -1,21 +1,6 @@
-<div ng-if="$root.role == 'tuteur'">
-    <h1 class="mt-2">Evaluation du stage de e année</h1>
-    <p>Ce questionnaire permet d'évaluer la posture du stagiaire de Polytech Marseille dans l'entreprise et les
-        compétences
-        apportées par la formation. <strong>Il doit être complété et retourné au plus tard le 1er septembre</strong>.
-    </p>
-    <form name="formtuteur" novalidate>
-        <h4>{{ categorie1.title }}</h4>
-        <div class="md-form" ng-repeat="question in categorie1.questions" ng-if="question.question">
-            <input type="text" id="{{question}}" class="form-control">
-            <label for="{{question}}">{{ question.question }}</label>
-        </div>
-    </form>
-</div>
-
 <div ng-if="$root.role == 'eleve'">
-    <h1 class="mt-2">Enregistrement du stage de {{ $root.niveau }}e année</h1>
-    <form ng-submit="createStage($root.idEleve, $root.nom, $root.prenom, $root.annee, $root.niveau, idenseignant, nomtuteur, prenomtuteur, emailtuteur, identreprise, 
+    <h1 class="mt-2">Modification du stage de {{ $root.niveau }}e année</h1>
+    <form ng-submit="editStage($root.idEleve, $root.nom, $root.prenom, $root.annee, $root.niveau, idenseignant, nomtuteur, prenomtuteur, emailtuteur, identreprise,
     adresseentreprise, titrestage, descriptionstage, emailstage, debutstage, finstage)" name="formeleve" novalidate>
         <h3 class="title-form">Stagiaire</h3>
         <div class="md-form my-3">
@@ -31,53 +16,51 @@
         <div class="md-form my-3">
             <label class="mdb-main-label" ng-class="{'active': idenseignant}">Nom</label>
             <select id="selectEnseignant" class="mdb-select select-ens md-form colorful-select dropdown-primary m-0"
-                ng-model="idenseignant">
-                <option ng-repeat="ens in enseignants" value="{{ ens.idens }}">{{ ens.prenom + ' ' + ens.nom }}</option>
-            </select>
+                ng-options="ens.idens as ens.nom for ens in enseignants" ng-model="idenseignant"></select>
         </div>
 
         <h3 class="mt-4 title-form">Tuteur entreprise</h3>
         <div class="md-form my-3">
             <input type="text" id="nomtuteur" class="form-control" ng-model="nomtuteur">
-            <label for="nomtuteur">Nom</label>
+            <label for="nomtuteur" ng-class="{'active': nomtuteur}">Nom</label>
         </div>
         <div class="md-form my-3">
             <input type="text" id="prenomtuteur" class="form-control" ng-model="prenomtuteur">
-            <label for="prenomtuteur">Prénom</label>
+            <label for="prenomtuteur" ng-class="{'active': prenomtuteur}">Prénom</label>
         </div>
         <div class="md-form my-3">
             <input type="email" id="emailtuteur" class="form-control" ng-model="emailtuteur">
-            <label for="emailtuteur">Email</label>
+            <label for="emailtuteur" ng-class="{'active': emailtuteur}">Email</label>
         </div>
 
         <h3 class="mt-4 title-form">Entreprise</h3>
         <div class="md-form my-3">
             <label class="mdb-main-label" ng-class="{'active': identreprise}">Nom <span
                     class="text-danger">*</span></label>
-            <select class="mdb-select select-ent md-form colorful-select dropdown-primary m-0" ng-model="identreprise">
-                <option ng-repeat="ent in entreprisesName" value="{{ ent.identreprise }}">
-                    {{ ent.nomcomplet }}</option>
-            </select>
+            <select class="mdb-select select-ent md-form colorful-select dropdown-primary m-0"
+                ng-options="ent.identreprise as ent.nomcomplet for ent in entreprisesName"
+                ng-model="identreprise"></select>
             <p class="text-muted m-0 font-italic">Si votre entreprise n'apparaît pas dans la liste, <a
                     ng-click="modalAddEntreprise()"><span class="text-primary">cliquez ici</span></a></p>
         </div>
         <div class="md-form my-3">
             <input type="text" id="adresseentreprise" class="form-control" ng-model="adresseentreprise">
-            <label for="adresseentreprise">Adresse</label>
+            <label for="adresseentreprise" ng-class="{'active': adresseentreprise}">Adresse</label>
         </div>
 
         <h3 class="mt-4 title-form">Stage</h3>
         <div class="md-form my-3">
             <input type="text" id="titrestage" class="form-control" ng-model="titrestage">
-            <label for="titrestage">Titre du stage <span class="text-danger">*</span></label>
+            <label for="titrestage" ng-class="{'active': titrestage}">Titre du stage <span
+                    class="text-danger">*</span></label>
         </div>
         <div class="md-form my-3">
             <input type="text" id="descriptionstage" class="form-control" ng-model="descriptionstage">
-            <label for="descriptionstage">Description du stage</label>
+            <label for="descriptionstage" ng-class="{'active': descriptionstage}">Description du stage</label>
         </div>
         <div class="md-form my-3">
             <input type="email" id="emailstage" class="form-control" ng-model="emailstage">
-            <label for="emailstage">Email du stage</label>
+            <label for="emailstage" ng-class="{'active': emailstage}">Email du stage</label>
         </div>
         <div class="md-form my-3">
             <input placeholder="Selectionner la date" type="text" id="debutstage" class="form-control datepicker"
@@ -89,7 +72,7 @@
                 ng-model="finstage">
             <label for="finstage" class="active">Fin du stage <span class="text-danger">*</span></label>
         </div>
-        <button type="submit" class="btn btn-primary float-right mx-0">Enregistrer mon stage</button>
+        <button type="submit" class="btn btn-primary float-right mx-0">Modifier mon stage</button>
     </form>
 </div>
 

@@ -17,6 +17,11 @@ controllers.controller('mainController', function ($scope, $rootScope, $timeout,
         $rootScope.numEtudiant = $window.sessionStorage.getItem('numEtudiant')
         $rootScope.email = $window.sessionStorage.getItem('email')
         $rootScope.idEleve = $window.sessionStorage.getItem('idEleve')
+        $rootScope.idTuteur = $window.sessionStorage.getItem('idTuteur')
+        $rootScope.idEns = $window.sessionStorage.getItem('idEns')
+        $rootScope.niveau = $window.sessionStorage.getItem('niveau')
+        $rootScope.annee = $window.sessionStorage.getItem('annee')
+        $rootScope.admin = $window.sessionStorage.getItem('admin')
     }
 
     $rootScope.$watch('isConnected', function () {
@@ -31,6 +36,11 @@ controllers.controller('mainController', function ($scope, $rootScope, $timeout,
         $window.sessionStorage.removeItem('numEtudiant')
         $window.sessionStorage.removeItem('email')
         $window.sessionStorage.removeItem('idEleve')
+        $window.sessionStorage.removeItem('idTuteur')
+        $window.sessionStorage.removeItem('idEns')
+        $window.sessionStorage.removeItem('niveau')
+        $window.sessionStorage.removeItem('annee')
+        $window.sessionStorage.removeItem('admin')
 
         $rootScope.getSessionInfos()
         $location.path("/")
