@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "carbone": "^1.2.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "formidable": "^1.2.1",
     "generate-password": "^1.4.2",
     "js-sha512": "^0.8.0",
